@@ -2,13 +2,20 @@
 global class RestExample {
     
     /**
-     * 
+     *  two params
+     *  String url = 'https://dev1-member-portal.cs114.force.com/memberportal/services/apexrest/username/zeming.dong@outlook.com/en';
+     *  String language = url.substring(url.lastIndexOf('/')+1);
+     *  System.debug('language: ' + language);
+     *	String url1 = url.substring(0, url.lastIndexOf('/'));
+     *	String email = url1.substring(url1.lastIndexOf('/')+1);
+     *	System.debug('email: ' + email);
      **/
     @HttpGet
     global static void getExample() {
     	RestRequest req = RestContext.request;
 
     	String Id = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
+	
       Account Result = [Select Id, FirstName From Account Limit 1];
     	RestResponse res = RestContext.response;
       res.addHeader('Content-Type', 'application/json');
